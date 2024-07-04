@@ -8,7 +8,7 @@ const Footer = () => {
         <footer>
             <Box bg="#edefee" px="20vw" py="4rem">
                 <HStack alignItems="start">
-                    <Image 
+                    <Image
                         objectFit='cover'
                         h="18rem"
                         src={footerLogo}
