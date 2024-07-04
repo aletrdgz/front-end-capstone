@@ -35,10 +35,10 @@ const customersOpinion = [
 
 const CustomersSay = () => {
     return(
-<Box bg="#FBDABB" px="20vw">
-    <VStack>
+<Box bg="#FBDABB" px="20vw" pt="8rem" pb="11rem">
+    <VStack spacing="4rem">
         <Heading>What our customers say!</Heading>
-        <HStack>
+        <HStack spacing="1.5rem" alignItems="start">
             {customersOpinion.map((customerOpinion) => (
                             <CustomersCard
                                 key={customerOpinion.username}

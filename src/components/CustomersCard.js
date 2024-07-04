@@ -9,6 +9,7 @@ const CustomersCard = ({ stars, name, username, opinion, imageSrc }) => {
         p="1.5rem"
         spacing="1rem"
         alignItems="left"
+        flex="1"
         >
             <HStack>
                 <Image
@@ -16,7 +17,7 @@ const CustomersCard = ({ stars, name, username, opinion, imageSrc }) => {
                     borderRadius="16px"
                     boxSize="2rem"
                 />
-                <VStack alignItems="left" color="black" spacing="0.25rem">
+                <VStack alignItems="left" color="black" spacing="0">
                     <Heading as="h4" my={0}>{name}</Heading>
                     <Text color="#333333" my={0}>{username}</Text>
                 </VStack>

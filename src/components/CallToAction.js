@@ -1,27 +1,57 @@
 import React from "react";
-import { Box, HStack, VStack, Image, Heading, Text } from "@chakra-ui/react";
+import { Box, HStack, VStack, Image, Heading, Text, Button } from "@chakra-ui/react";
 import waiterFood from "../img/waiterfood.jpg";
 
 const CallToAction = () => {
     return(
-        <Box bg="#495E57" px="20vw" w="100vw">
-            <HStack>
-                <VStack alignItems="left" spacing="2rem">
-                    <VStack alignItems="left" spacing="0">
-                        <Heading as="h1" mt="3rem" mb={0}>Little Lemon</Heading>
-                        <Heading as="h2" mt="0">Chicago</Heading>
+        <Box
+            bg="#495E57"
+            px="20vw"
+            py="2rem"
+        >
+            <HStack alignItems="start" spacing="2rem">
+                <VStack
+                    alignItems="left"
+                    spacing="1.8rem"
+                    flex={1}
+                >
+                    <VStack
+                        alignItems="start"
+                        spacing="0"
+                    >
+                        <Heading
+                            as="h1"
+                            mb="0"
+                            mt="1rem"
+                            color="#F4CE14"
+                        >Little Lemon</Heading>
+                        <Heading
+                            as="h2"
+                            color="#EDEFEE"
+                        >Chicago</Heading>
                     </VStack>
-                    <Text maxWidth="18rem">We are a family owned Mediterranean restaurant, focused on traditional 
-                        recipes served with a modern twist.</Text>
+                    <Text
+                        maxWidth="18rem"
+                        fontSize="1.25rem"
+                        color="#EDEFEE"
+                        my="0"
+                    >We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</Text>
+                    <Button
+                        className="primary-button"
+                        maxWidth="12rem"
+                    >Reserve a Table</Button>
                 </VStack>
-                <Image
-                    borderRadius="16px"
-                    objectFit="cover"
-                    maxWidth="23rem"
-                    maxHeight="25rem"
-                    src={waiterFood}
-                    alt="A waiter holding a plate of food"
-                    mt="2rem"                />
+                <Box flex={1}>
+                    <Image
+                        borderRadius="1rem"
+                        objectFit="cover"
+                        position="absolute"
+                        h="25rem"
+                        w="29%"
+                        src={waiterFood}
+                        alt="A waiter holding a plate of food"
+                    />
+                </Box>
             </HStack>
         </Box>
     );

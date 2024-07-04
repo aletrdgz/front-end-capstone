@@ -4,7 +4,7 @@ import { HStack } from "@chakra-ui/react";
 const Nav = () => {
     return(
         <nav>
-            <HStack spacing="1.75rem">
+            <HStack spacing="1.75rem" fontWeight="500" fontSize="1.25rem">
                 <a href="/menu.html" >Home</a>
                 <a href="/about.html" >About</a>
                 <a href="/menu.html" >Menu</a>
