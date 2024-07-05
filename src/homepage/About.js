@@ -8,18 +8,21 @@ const About = () => {
         <Box px="20vw" pt="6rem" pb="8rem">
             <HStack>
                 <VStack alignItems="left" spacing="2rem" flex="1">
-                    <VStack alignItems="left">
+                    <VStack alignItems="left" spacing={0}>
                     <Heading as="h1" mt="3rem" mb={0} color="#495E57">Little Lemon</Heading>
-                    <Heading as="h2" mt="0">Chicago</Heading>
+                    <Heading as="h2" mt="0" color="#333333">Chicago</Heading>
                     </VStack>
-                    <Text maxWidth="18rem">We are a family owned Mediterranean restaurant, focused on traditional 
+                    <Text maxWidth="18rem"
+                        fontSize="1.25rem"
+                        fontWeight="700"
+                        color="#333333"
+                    >We are a family owned Mediterranean restaurant, focused on traditional 
                     recipes served with a modern twist.</Text>
                 </VStack>
                 <Box flex={1}>
                     <Image
                     borderRadius='16'
                     objectFit='cover'
-                    boxSize='200'
                     src={restaurant}
                     alt="Restaurant space"
                     position="relative"
@@ -30,7 +33,6 @@ const About = () => {
                     <Image
                     borderRadius='16'
                     objectFit='cover'
-                    boxSize='200'
                     src={ownersB}
                     alt="Mario and Adrian"
                     position="relative"

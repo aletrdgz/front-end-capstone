@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, HStack, VStack, Image, Heading, Text, Button } from "@chakra-ui/react";
 import waiterFood from "../img/waiterfood.jpg";
+import { Link } from "react-router-dom";
 
 const CallToAction = () => {
     return(
@@ -39,7 +40,7 @@ const CallToAction = () => {
                     <Button
                         className="primary-button"
                         maxWidth="12rem"
-                    >Reserve a Table</Button>
+                    ><Link to="/booking">Reserve a Table</Link></Button>
                 </VStack>
                 <Box flex={1}>
                     <Image
