@@ -5,7 +5,6 @@ import {
     FormControl,
     FormErrorMessage,
     FormLabel,
-    Select,
     VStack,
     HStack,
     Button,
@@ -16,8 +15,49 @@ import "./BookingPage.css";
 import waiterFood from "../img/waiterfood.jpg";
 import chef from "../img/restaurant chef B.jpg"
 import restaurant from "../img/restaurant.jpg";
-import ConfirmationPage from './ConfirmationPage';
 import { Link } from "react-router-dom";
+import Select, { StylesConfig } from 'react-select';
+
+const selectStyles: StylesConfig<Select> = {
+    control: (styles) => ({ ...styles,
+        backgroundColor: "#EDEFEE",
+        padding: "1rem 2.5rem",
+        borderRadius: "0.5rem",
+        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+        textAlign: "center",
+        fontSize: "1.5rem",
+        fontWeight: 700,
+    }),
+    option: (styles, { isFocused, isSelected }) => ({ ...styles,
+        backgroundColor: isFocused
+            ? "#e0e3e1"
+            : isSelected
+            ? "#e0e3e1"
+            : "#EDEFEE",
+        padding: "1rem 2.5rem",
+        borderBottom: "1px dashed #495E57",
+        color: "#495E57",
+        borderRadius: "0.5rem",
+        textAlign: "center",
+        fontSize: "1.5rem",
+        fontWeight: 700,
+
+        ":active" : {
+            ...styles[":active"],
+            backgroundColor:
+            isSelected
+            ? "#e0e3e1"
+            : undefined,
+        },
+    }),
+    placeholder: (styles) => ({ ...styles, color: "#495E57"}),
+    singleValue: (styles) => ({ ...styles, color: "#495E57"}),
+};
+
+const seatingOptions = [
+    { value: "indoorSeating", label: "Indoor seating" },
+    { value: "outdoorSeating", label: "Outdoor seating" }
+]
 
 const BookingPage = () => {
     return(
@@ -39,21 +79,34 @@ const BookingPage = () => {
                             <VStack alignItems="left" flex={1}>
                                 <FormControl>
                                     <FormLabel htmlFor="seating">Seating preferences</FormLabel>
-                                    <Select className="selectInput" id="seating" name="seating" placeholder="Seating">
-                                        <option value="indoorSeating">Indoor seating</option>
-                                        <option value="outdoorSeating">Outdoor seating</option>
-                                    </Select>
+                                    <Select
+                                        id="seating"
+                                        name="seating"
+                                        placeholder="Seating"
+                                        options={seatingOptions}
+                                        styles={selectStyles}
+                                    />
                                     <FormErrorMessage></FormErrorMessage>
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel htmlFor="date">Date</FormLabel>
-                                    <Select className="selectInput" id="date" name="date" placeholder="Select Date">
+                                    <Select
+                                        id="date"
+                                        name="date"
+                                        placeholder="Select Date"
+                                        styles={selectStyles}
+                                    >
                                     </Select>
                                     <FormErrorMessage></FormErrorMessage>
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel htmlFor="occasion">Occasion</FormLabel>
-                                    <Select className="selectInput" id="occasion" name="occasion" placeholder="Occasion">
+                                    <Select
+                                        id="occasion"
+                                        name="occasion"
+                                        placeholder="Occasion"
+                                        styles={selectStyles}
+                                    >
                                         <option value="birthday">Birthday</option>
                                         <option value="engagement">Engagement</option>
                                         <option value="anniversary">Anniversary</option>
@@ -65,7 +118,12 @@ const BookingPage = () => {
                             <VStack alignItems="left" flex={1}>
                                 <FormControl>
                                     <FormLabel htmlFor="time">Time</FormLabel>
-                                    <Select className="selectInput" id="time" name="time" placeholder="Select Time">
+                                    <Select
+                                        id="time"
+                                        name="time"
+                                        placeholder="Select Time"
+                                        styles={selectStyles}
+                                    >
                                         <option value="time5">5:00 pm</option>
                                         <option value="time6">6:00 pm</option>
                                         <option value="time7">7:00 pm</option>
@@ -77,7 +135,12 @@ const BookingPage = () => {
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel htmlFor="diners">Number of diners</FormLabel>
-                                    <Select className="selectInput" id="diners" name="diners" placeholder="No. of Diners">
+                                    <Select
+                                        className="selectInput"
+                                        id="diners" name="diners"
+                                        placeholder="No. of Diners"
+                                        styles={selectStyles}
+                                    >
                                         <option value="diners1">1 Diner</option>
                                         <option value="diners2">2 Diners</option>
                                         <option value="diners3">3 Diners</option>
@@ -95,7 +158,6 @@ const BookingPage = () => {
                             <Button
                                 className="primary-button"
                                 maxWidth="12rem"
-                                
                             ><Link to="/booking/confirmation">Reserve a Table</Link>
                                 </Button>
                         </HStack>
@@ -107,7 +169,7 @@ const BookingPage = () => {
                 py="2rem"
             >
                 <HStack spacing="2.5rem">
-                    <Image 
+                    <Image
                     borderRadius='16'
                     objectFit='cover'
                     src={restaurant}
@@ -115,7 +177,7 @@ const BookingPage = () => {
                     h="12rem"
                     flex={1}
                     />
-                    <Image 
+                    <Image
                     borderRadius='16'
                     objectFit='cover'
                     src={chef}
@@ -123,7 +185,7 @@ const BookingPage = () => {
                     h="12rem"
                     flex={1}
                     />
-                    <Image 
+                    <Image
                     borderRadius='16'
                     objectFit='cover'
                     src={waiterFood}
