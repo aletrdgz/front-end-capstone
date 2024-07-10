@@ -8,7 +8,7 @@ label {
     padding-bottom: 1rem;
 }
 
-input, textarea {
+.confirm-input {
     padding: 0.625rem;
     width: 100%;
     border-radius: 0.5rem;

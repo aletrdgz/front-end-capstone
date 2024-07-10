@@ -54,6 +54,7 @@ const ConfirmationPage = () => {
                                     <Input
                                     id="firstName"
                                     name="firstName"
+                                    className="confirm-input"
                                     {...formik.getFieldProps("firstName")}
                                     />
                                     <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
@@ -64,6 +65,7 @@ const ConfirmationPage = () => {
                                     id="email"
                                     name="email"
                                     type="email"
+                                    className="confirm-input"
                                     {...formik.getFieldProps("email")}
                                     />
                                     <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
@@ -75,6 +77,7 @@ const ConfirmationPage = () => {
                                     <Input
                                     id="lastName"
                                     name="lastName"
+                                    className="confirm-input"
                                     {...formik.getFieldProps("lastName")}
                                     />
                                     <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
@@ -85,6 +88,7 @@ const ConfirmationPage = () => {
                                     id="phoneNumber"
                                     name="phoneNumber"
                                     type="phoneNumber"
+                                    className="confirm-input"
                                     {...formik.getFieldProps("phoneNumber")}
                                     />
                                     <FormErrorMessage>{formik.errors.phoneNumber}</FormErrorMessage>
@@ -95,6 +99,7 @@ const ConfirmationPage = () => {
                                     id="comment"
                                     name="comment"
                                     height={250}
+                                    className="confirm-input"
                                     {...formik.getFieldProps("comment")}
                                     />
                                     <FormErrorMessage>{formik.errors.comment}</FormErrorMessage>

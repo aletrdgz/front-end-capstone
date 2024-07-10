@@ -4,7 +4,6 @@ import logo from "../img/logo.png";
 import { Box, HStack } from "@chakra-ui/react";
 
 const Header = () => {
-    // const logo = require("../img/logo.png");
     return (
         <header>
             <Box px="20vw" py="2rem">

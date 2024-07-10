@@ -16,12 +16,59 @@ import waiterFood from "../img/waiterfood.jpg";
 import chef from "../img/restaurant chef B.jpg"
 import restaurant from "../img/restaurant.jpg";
 import { Link } from "react-router-dom";
-import Select, { StylesConfig } from 'react-select';
+import Select, { StylesConfig, components } from 'react-select';
+import dropdown from "../img/dropdown.svg";
+import seatingIcon from "../img/seatingIcon.svg";
+import dateIcon from "../img/dateIcon.svg";
+import occasionIcon from "../img/occasionIcon.svg";
+import timeIcon from "../img/timeIcon.svg";
+import dinerIcon from "../img/dinerIcon.svg";
+
+const SeatingPlaceholder = (props) => (
+    <components.Placeholder {...props}>
+        <img src={seatingIcon} alt={"Seating icon"} className="select-icon" />
+        Seating
+    </components.Placeholder>
+);
+const DatePlaceholder = (props) => (
+    <components.Placeholder {...props}>
+        <img src={dateIcon} alt={"Calendar icon"} className="select-icon" />
+        Select Date
+    </components.Placeholder>
+);
+const OccasionPlaceholder = (props) => (
+    <components.Placeholder {...props}>
+        <img src={occasionIcon} alt={"Occasion icon"} className="select-icon" />
+        Occasion
+    </components.Placeholder>
+);
+const TimePlaceholder = (props) => (
+    <components.Placeholder {...props}>
+        <img src={timeIcon} alt={"Time icon"} className="select-icon" />
+        Select Time
+    </components.Placeholder>
+);
+const DinerPlaceholder = (props) => (
+    <components.Placeholder {...props}>
+        <img src={dinerIcon} alt={"Diner icon"} className="select-icon" />
+        No. of Diners
+    </components.Placeholder>
+);
+const DropdownIndicator = (props) => (
+    <components.DropdownIndicator {...props}>
+        <img src={dropdown} alt={"Dropdown indicator"} className="select-icon"/>
+    </components.DropdownIndicator>
+);
+// const TwoColumnOption = (props) => (
+//     <components.TwoColumnOption {...props}>
+//         <HStack><div>{props.data.label}</div><div>{props.data.label}</div></HStack>
+//     </components.TwoColumnOption>
+// );
 
 const selectStyles: StylesConfig<Select> = {
     control: (styles) => ({ ...styles,
         backgroundColor: "#EDEFEE",
-        padding: "1rem 2.5rem",
+        padding: "0.5rem 1rem 0.5rem 2rem",
         borderRadius: "0.5rem",
         boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
         textAlign: "center",
@@ -50,16 +97,46 @@ const selectStyles: StylesConfig<Select> = {
             : undefined,
         },
     }),
-    placeholder: (styles) => ({ ...styles, color: "#495E57"}),
+    placeholder: (styles) => ({ ...styles,
+         color: "#495E57",
+         display: "flex",
+         alignItems: "center",
+         justifyContent: "start",
+         gap: "30%",
+    }),
     singleValue: (styles) => ({ ...styles, color: "#495E57"}),
+    input: (styles) => ({ ...styles, color: "#495E57"}),
+    indicatorSeparator: (styles) => ({ ...styles, backgroundColor: "#EDEFEE"}),
+    menu: (styles) => ({ ...styles, backgroundColor: "#EDEFEE"}),
 };
 
 const seatingOptions = [
     { value: "indoorSeating", label: "Indoor seating" },
     { value: "outdoorSeating", label: "Outdoor seating" }
-]
+];
+const occasionOptions = [
+    { value: "birthday", label: "Birthday" },
+    { value: "engagement", label: "Engagement" },
+    { value: "anniversary", label: "Anniversary" },
+    { value: "other", label: "Other" }
+];
+//fetch
+const allowedTime = [];
+const dinerOptions = [
+    { value: "diners1", label: "1 Diner" },
+    { value: "diners2", label: "2 Diners" },
+    { value: "diners3", label: "3 Diners" },
+    { value: "diners4", label: "4 Diners" },
+    { value: "diners5", label: "5 Diners" },
+    { value: "diners6", label: "6 Diners" },
+    { value: "diners7", label: "7 Diners" },
+    { value: "dinersPlus", label: "Other" }
+];
 
 const BookingPage = () => {
+//     const [selectedSeating, setSelectedSeating]
+// const handleChange
+
     return(
         <>
             <Header />
@@ -70,10 +147,10 @@ const BookingPage = () => {
             >
                 <VStack alignItems="left">
                 <Heading
-                            as="h1"
-                            my="0"
-                            color="#F4CE14"
-                        >Reservations</Heading>
+                    as="h1"
+                    my="0"
+                    color="#F4CE14"
+                >Reservations</Heading>
                     <form>
                         <HStack alignItems="start" spacing="2.5rem">
                             <VStack alignItems="left" flex={1}>
@@ -82,8 +159,8 @@ const BookingPage = () => {
                                     <Select
                                         id="seating"
                                         name="seating"
-                                        placeholder="Seating"
                                         options={seatingOptions}
+                                        components={{Placeholder : SeatingPlaceholder, DropdownIndicator}}
                                         styles={selectStyles}
                                     />
                                     <FormErrorMessage></FormErrorMessage>
@@ -94,6 +171,7 @@ const BookingPage = () => {
                                         id="date"
                                         name="date"
                                         placeholder="Select Date"
+                                        components={{Placeholder : DatePlaceholder, DropdownIndicator}}
                                         styles={selectStyles}
                                     >
                                     </Select>
@@ -104,7 +182,8 @@ const BookingPage = () => {
                                     <Select
                                         id="occasion"
                                         name="occasion"
-                                        placeholder="Occasion"
+                                        options={occasionOptions}
+                                        components={{Placeholder : OccasionPlaceholder, DropdownIndicator}}
                                         styles={selectStyles}
                                     >
                                         <option value="birthday">Birthday</option>
@@ -121,34 +200,25 @@ const BookingPage = () => {
                                     <Select
                                         id="time"
                                         name="time"
-                                        placeholder="Select Time"
+                                        options={allowedTime}
+                                        components={{Placeholder : TimePlaceholder, DropdownIndicator}}
                                         styles={selectStyles}
                                     >
-                                        <option value="time5">5:00 pm</option>
-                                        <option value="time6">6:00 pm</option>
-                                        <option value="time7">7:00 pm</option>
-                                        <option value="time8">8:00 pm</option>
-                                        <option value="time9">9:00 pm</option>
-                                        <option value="time10">10:00 pm</option>
                                     </Select>
                                     <FormErrorMessage></FormErrorMessage>
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel htmlFor="diners">Number of diners</FormLabel>
                                     <Select
-                                        className="selectInput"
-                                        id="diners" name="diners"
-                                        placeholder="No. of Diners"
+                                        id="diners"
+                                        name="diners"
+                                        options={dinerOptions}
+                                        components={{Placeholder : DinerPlaceholder, 
+                                            DropdownIndicator 
+                                            // Option : TwoColumnOption
+                                        }}
                                         styles={selectStyles}
                                     >
-                                        <option value="diners1">1 Diner</option>
-                                        <option value="diners2">2 Diners</option>
-                                        <option value="diners3">3 Diners</option>
-                                        <option value="diners4">4 Diners</option>
-                                        <option value="diners5">5 Diners</option>
-                                        <option value="diners6">6 Diners</option>
-                                        <option value="diners7">7 Diners</option>
-                                        <option value="dinersPlus">Other</option>
                                     </Select>
                                     <FormErrorMessage></FormErrorMessage>
                                 </FormControl>
