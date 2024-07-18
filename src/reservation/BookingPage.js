@@ -16,6 +16,7 @@ import waiterFood from "../img/waiterfood.jpg";
 import chef from "../img/restaurant chef B.jpg"
 import restaurant from "../img/restaurant.jpg";
 import { Link } from "react-router-dom";
+//select styling
 import Select, { StylesConfig, components } from 'react-select';
 import dropdown from "../img/dropdown.svg";
 import seatingIcon from "../img/seatingIcon.svg";
@@ -23,6 +24,10 @@ import dateIcon from "../img/dateIcon.svg";
 import occasionIcon from "../img/occasionIcon.svg";
 import timeIcon from "../img/timeIcon.svg";
 import dinerIcon from "../img/dinerIcon.svg";
+//date picker
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import StyledPickerContainer from "./StyledPickerContainer";
 
 const SeatingPlaceholder = (props) => (
     <components.Placeholder {...props}>
@@ -30,12 +35,12 @@ const SeatingPlaceholder = (props) => (
         Seating
     </components.Placeholder>
 );
-const DatePlaceholder = (props) => (
-    <components.Placeholder {...props}>
-        <img src={dateIcon} alt={"Calendar icon"} className="select-icon" />
-        Select Date
-    </components.Placeholder>
-);
+// const DatePlaceholder = (props) => (
+//     <components.Placeholder {...props}>
+//         <img src={dateIcon} alt={"Calendar icon"} className="select-icon" />
+//         Select Date
+//     </components.Placeholder>
+// );
 const OccasionPlaceholder = (props) => (
     <components.Placeholder {...props}>
         <img src={occasionIcon} alt={"Occasion icon"} className="select-icon" />
@@ -59,10 +64,24 @@ const DropdownIndicator = (props) => (
         <img src={dropdown} alt={"Dropdown indicator"} className="select-icon"/>
     </components.DropdownIndicator>
 );
-// const TwoColumnOption = (props) => (
-//     <components.TwoColumnOption {...props}>
-//         <HStack><div>{props.data.label}</div><div>{props.data.label}</div></HStack>
-//     </components.TwoColumnOption>
+const TwoColumnsMenuList = (props) => (
+    <components.MenuList {...props}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}
+        >{props.children}</div>
+    </components.MenuList>
+);
+// const PaddedHoverOption = ( props, { isFocused, isSelected }) => (
+//     <components.Option {...props}>
+//         <div><div style={{
+//                     backgroundColor: isFocused
+//                         ? "#e0e3e1"
+//                         : isSelected
+//                         ? "#e0e3e1"
+//                         : "#EDEFEE",
+//                     margin: '0.5rem',
+//                     padding: '0.5rem',
+//                     borderRadius: "0.5rem"}}>{props.children}</div></div>
+//     </components.Option>
 // );
 
 const selectStyles: StylesConfig<Select> = {
@@ -81,10 +100,9 @@ const selectStyles: StylesConfig<Select> = {
             : isSelected
             ? "#e0e3e1"
             : "#EDEFEE",
-        padding: "1rem 2.5rem",
+        padding: "1.5rem 2.5rem",
         borderBottom: "1px dashed #495E57",
         color: "#495E57",
-        borderRadius: "0.5rem",
         textAlign: "center",
         fontSize: "1.5rem",
         fontWeight: 700,
@@ -167,14 +185,17 @@ const BookingPage = () => {
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel htmlFor="date">Date</FormLabel>
-                                    <Select
+                                    {/* <Select
                                         id="date"
                                         name="date"
                                         placeholder="Select Date"
                                         components={{Placeholder : DatePlaceholder, DropdownIndicator}}
                                         styles={selectStyles}
                                     >
-                                    </Select>
+                                    </Select> */}
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <StyledPickerContainer />
+                                    </LocalizationProvider>
                                     <FormErrorMessage></FormErrorMessage>
                                 </FormControl>
                                 <FormControl>
@@ -186,10 +207,6 @@ const BookingPage = () => {
                                         components={{Placeholder : OccasionPlaceholder, DropdownIndicator}}
                                         styles={selectStyles}
                                     >
-                                        <option value="birthday">Birthday</option>
-                                        <option value="engagement">Engagement</option>
-                                        <option value="anniversary">Anniversary</option>
-                                        <option value="other">Other</option>
                                     </Select>
                                     <FormErrorMessage></FormErrorMessage>
                                 </FormControl>
@@ -213,9 +230,10 @@ const BookingPage = () => {
                                         id="diners"
                                         name="diners"
                                         options={dinerOptions}
-                                        components={{Placeholder : DinerPlaceholder, 
-                                            DropdownIndicator 
-                                            // Option : TwoColumnOption
+                                        components={{Placeholder : DinerPlaceholder,
+                                            DropdownIndicator,
+                                            MenuList : TwoColumnsMenuList,
+                                            // Option : PaddedHoverOption,
                                         }}
                                         styles={selectStyles}
                                     >
