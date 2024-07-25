@@ -42,8 +42,7 @@ const ConfirmationPage = () => {
             <Header />
             <Box
                 bg="#495E57"
-                px="20vw"
-                py="2rem"
+                className="section-container"
             >
                 <VStack alignItems="left">
                     <form>
@@ -108,37 +107,6 @@ const ConfirmationPage = () => {
                         </HStack>
                     </form>
                 </VStack>
-            </Box>
-            <Box
-                px="20vw"
-                py="2rem"
-            >
-                <HStack spacing="2.5rem">
-                    <Image
-                    borderRadius='16'
-                    objectFit='cover'
-                    src={pasta}
-                    alt="Restaurant pasta dish"
-                    h="12rem"
-                    flex={1}
-                    />
-                    <Image
-                    borderRadius='16'
-                    objectFit='cover'
-                    src={fish}
-                    alt="Restaurant fish dish"
-                    h="12rem"
-                    flex={1}
-                    />
-                    <Image
-                    borderRadius='16'
-                    objectFit='cover'
-                    src={ownersA}
-                    alt="Mario and Adrian"
-                    h="12rem"
-                    flex={1}
-                    />
-                </HStack>
                 <HStack
                     justifyContent="center"
                     pt="3rem"
@@ -148,6 +116,27 @@ const ConfirmationPage = () => {
                         maxWidth="12rem"
                     >Confirm reservation</Button>
                 </HStack>
+            </Box>
+            <Box
+                className="section-container"
+            >
+                <Box className="gallery-container">
+                    <Image
+                    className="gallery-img"
+                    src={pasta}
+                    alt="Restaurant pasta dish"
+                    />
+                    <Image
+                    className="gallery-img"
+                    src={fish}
+                    alt="Restaurant fish dish"
+                    />
+                    <Image
+                    className="gallery-img"
+                    src={ownersA}
+                    alt="Mario and Adrian"
+                    />
+                </Box>
             </Box>
         </>
     );

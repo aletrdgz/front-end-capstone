@@ -57,6 +57,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.section-container {
+  padding: 2rem 20vw;
+}
+
 .primary-button {
   background:#F4CE14;
   border-radius: 1rem;
@@ -65,4 +69,53 @@ a:hover {
   font-family: "Karla", sans-serif;
   font-size: 1.125rem;
   font-weight: 500;
+}
+
+.specials-cards-container {
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 1.85rem;
+}
+
+.specials-card-img {
+  border-radius: 1rem 1rem 0rem 0rem;
+  object-fit: cover;
+  height: 11.5rem;
+  width: 100%;
+}
+
+.specials-card-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.specials-card-text {
+  color: black;
+  padding: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .specials-cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .specials-card-img {
+    border-radius: 1rem;
+    margin: 1.85rem;
+    align-self: center;
+    grid-column-start: 2;
+  }
+
+  .specials-card-text {
+    grid-row: 2 / 1;
+  }
+
+  .specials-card-container {
+    grid-template-columns: 1fr 1fr;
+    background: white;
+    border-color: black;
+    border-width: 1px 0;
+    border-style: solid;
+  }
 }

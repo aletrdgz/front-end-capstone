@@ -20,7 +20,6 @@ import { Link } from "react-router-dom";
 import Select, { StylesConfig, components } from 'react-select';
 import dropdown from "../img/dropdown.svg";
 import seatingIcon from "../img/seatingIcon.svg";
-import dateIcon from "../img/dateIcon.svg";
 import occasionIcon from "../img/occasionIcon.svg";
 import timeIcon from "../img/timeIcon.svg";
 import dinerIcon from "../img/dinerIcon.svg";
@@ -35,12 +34,6 @@ const SeatingPlaceholder = (props) => (
         Seating
     </components.Placeholder>
 );
-// const DatePlaceholder = (props) => (
-//     <components.Placeholder {...props}>
-//         <img src={dateIcon} alt={"Calendar icon"} className="select-icon" />
-//         Select Date
-//     </components.Placeholder>
-// );
 const OccasionPlaceholder = (props) => (
     <components.Placeholder {...props}>
         <img src={occasionIcon} alt={"Occasion icon"} className="select-icon" />
@@ -159,9 +152,8 @@ const BookingPage = () => {
         <>
             <Header />
             <Box
+                className="section-container"
                 bg="#495E57"
-                px="20vw"
-                py="2rem"
             >
                 <VStack alignItems="left">
                 <Heading
@@ -170,8 +162,8 @@ const BookingPage = () => {
                     color="#F4CE14"
                 >Reservations</Heading>
                     <form>
-                        <HStack alignItems="start" spacing="2.5rem">
-                            <VStack alignItems="left" flex={1}>
+                        <Box className="form-container">
+                            {/* <VStack alignItems="left" flex={1}> */}
                                 <FormControl>
                                     <FormLabel htmlFor="seating">Seating preferences</FormLabel>
                                     <Select
@@ -185,14 +177,6 @@ const BookingPage = () => {
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel htmlFor="date">Date</FormLabel>
-                                    {/* <Select
-                                        id="date"
-                                        name="date"
-                                        placeholder="Select Date"
-                                        components={{Placeholder : DatePlaceholder, DropdownIndicator}}
-                                        styles={selectStyles}
-                                    >
-                                    </Select> */}
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <StyledPickerContainer />
                                     </LocalizationProvider>
@@ -210,8 +194,6 @@ const BookingPage = () => {
                                     </Select>
                                     <FormErrorMessage></FormErrorMessage>
                                 </FormControl>
-                            </VStack>
-                            <VStack alignItems="left" flex={1}>
                                 <FormControl>
                                     <FormLabel htmlFor="time">Time</FormLabel>
                                     <Select
@@ -240,8 +222,8 @@ const BookingPage = () => {
                                     </Select>
                                     <FormErrorMessage></FormErrorMessage>
                                 </FormControl>
-                            </VStack>
-                        </HStack>
+                            {/* </VStack> */}
+                        </Box>
                         <HStack justifyContent="center" pt="3rem">
                             <Button
                                 className="primary-button"
@@ -253,35 +235,25 @@ const BookingPage = () => {
                 </VStack>
             </Box>
             <Box
-                px="20vw"
-                py="2rem"
+                className="section-container"
             >
-                <HStack spacing="2.5rem">
+                <Box className="gallery-container">
                     <Image
-                    borderRadius='16'
-                    objectFit='cover'
+                    className="gallery-img"
                     src={restaurant}
                     alt="Restaurant space"
-                    h="12rem"
-                    flex={1}
                     />
                     <Image
-                    borderRadius='16'
-                    objectFit='cover'
+                    className="gallery-img"
                     src={chef}
                     alt="Restaurant'chef cooking"
-                    h="12rem"
-                    flex={1}
                     />
                     <Image
-                    borderRadius='16'
-                    objectFit='cover'
+                    className="gallery-img"
                     src={waiterFood}
                     alt="A waiter holding a plate of food"
-                    h="12rem"
-                    flex={1}
                     />
-                </HStack>
+                </Box>
             </Box>
         </>
     );

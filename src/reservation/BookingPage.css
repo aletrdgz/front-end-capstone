@@ -21,3 +21,36 @@ label {
     font-weight: 500;
     line-height: normal;
 }
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2.5rem;
+    grid-row-gap: 1rem;
+    /* align-items: start; */
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 2.5rem;
+}
+
+.gallery-img {
+    border-radius: 1rem;
+    object-fit: cover;
+    height: 12rem;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-container {
+        grid-template-columns: 1fr;
+        grid-row-gap: 2.5rem;
+        justify-items: center;
+    }
+}

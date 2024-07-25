@@ -47,10 +47,8 @@ const Specials = () => {
                     >Menu</Button>
                 </HStack>
                 <Box>
-                    <HStack
-                        spacing="1.85rem"
-                        mt="3.5rem"
-                        alignItems="start"
+                    <Box
+                        className="specials-cards-container"
                     >
                     {specials.map((special) => (
                         <Card
@@ -62,7 +60,7 @@ const Specials = () => {
                             flexGrow="1"
                         />
                     ))}
-                    </HStack>
+                    </Box>
                 </Box>
             </Box>
         </section>

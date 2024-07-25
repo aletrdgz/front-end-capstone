@@ -26,21 +26,11 @@ const StyledTextField = styled(TextField)({
     '& .MuiInputBase-input::placeholder': {
         opacity: "1", // This will make the placeholder fully opaque
     },
-    // '& .MuiOutlinedInput-input': {
-    //     display: 'none',
-    //     position: "relative",
+    // '& .MuiInputBase-adornedStart': {
+    //     '&.Mui-selected': {
+    //             display: "none",
+    //             },
     // },
-    //  '& .MuiOutlinedInput-root': {
-    //    '& fieldset': {
-    //      borderColor: 'gray', // Default border color
-    //    },
-    //    '&:hover fieldset': {
-    //      borderColor: 'blue', // Border color on hover
-    //    },
-    //    '&.Mui-focused fieldset': {
-    //      borderColor: 'green', // Border color on focus
-    //    },
-    //  },
 });
 
 const newTheme = (theme) => createTheme({

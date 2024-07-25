@@ -10,20 +10,16 @@ const Card = ({ title, price, description, imageSrc, alt }) => {
             bg="#EDEFEE"
             flex="1"
           >
-            <VStack
-              spacing={0}
+            <Box
+              className="specials-card-container"
             >
               <Image
+                  className="specials-card-img"
                   src={imageSrc}
-                  borderRadius="1rem 1rem 0rem 0rem"
                   alt={alt}
-                  objectFit="cover"
-                  w="100%"
-                  h="11.5rem"
               />
               <VStack
-                color="black"
-                p="1.5rem"
+                className="specials-card-text"
                 spacing="0"
                 justifyContent="space-between"
                 >
@@ -55,7 +51,7 @@ const Card = ({ title, price, description, imageSrc, alt }) => {
                     </HStack>
                   </VStack>
               </VStack>
-            </VStack>
+            </Box>
           </Box>
       );
     };
