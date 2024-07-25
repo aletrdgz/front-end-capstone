@@ -1,18 +1,34 @@
-import React from "react";
-import { HStack } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import hamburgerMenu from "../img/hamburgerMenu.svg";
 
 const Nav = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    }
+
     return(
         <nav>
-            <HStack spacing="1.75rem" fontWeight="500" fontSize="1.25rem">
+            {/* mobile nav */}
+            <img
+                src={hamburgerMenu}
+                alt={"Hidden menu icon"}
+                className="menu-icon"
+                onClick={toggleMenu}
+            />
+            {/* nav items */}
+            <Box
+                className={`nav-links ${menuOpen ? "visible" : ""}`}
+            >
                 <Link to="/" >Home</Link>
-                <a href="/about.html" >About</a>
-                <a href="/menu.html" >Menu</a>
+                <Link to="/" >About</Link>
+                <Link to="/" >Menu</Link>
                 <Link to="/booking" >Reservations</Link>
-                <a href="/ordering.html" >Order Online</a>
-                <a href="/login.html" >Login</a>
-            </HStack>
+                <Link to="/" >Order Online</Link>
+                <Link to="/" >Login</Link>
+            </Box>
         </nav>
     );
 };
