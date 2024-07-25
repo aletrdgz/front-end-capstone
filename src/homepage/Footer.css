@@ -7,3 +7,17 @@ ul {
     padding: 0;
     margin: 0;
 }
+
+.footer-nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .footer-nav {
+        grid-template-columns: 1fr 1fr;
+        grid-row-gap: 2.5rem;
+        justify-items: center;
+    }
+}

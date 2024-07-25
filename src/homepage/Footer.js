@@ -16,31 +16,33 @@ const Footer = () => {
                         alt="Logo"
                         pr="10%"
                     />
-                    <VStack flex={1} alignItems="left">
-                        <Heading as="h4">Doormat Navigation</Heading>
-                        <ul>
-                            <li><Link to="/">Home</Link></li>
-                            <li><a>About</a></li>
-                            <li><a>Menu</a></li>
-                            <li><Link to="/booking">Reservations</Link></li>
-                            <li><a>Order Online</a></li>
-                            <li><a>Login</a></li>
-                        </ul>
-                    </VStack>
-                    <VStack flex={1} alignItems="left">
-                        <Heading as="h4">Contact</Heading>
-                        <ul>
-                            <li><a>Address</a></li>
-                            <li><a>Phone Number</a></li>
-                            <li><a>Email</a></li>
-                        </ul>
-                    </VStack>
-                    <VStack flex={1} alignItems="left">
-                        <Heading as="h4">Social Media Links</Heading>
-                        <ul>
-                            <li><a>Instagram</a></li>
-                        </ul>
-                    </VStack>
+                    <Box className="footer-nav">
+                        <VStack alignItems="left">
+                            <Heading as="h4">Doormat Navigation</Heading>
+                            <ul>
+                                <li><Link to="/">Home</Link></li>
+                                <li><a>About</a></li>
+                                <li><a>Menu</a></li>
+                                <li><Link to="/booking">Reservations</Link></li>
+                                <li><a>Order Online</a></li>
+                                <li><a>Login</a></li>
+                            </ul>
+                        </VStack>
+                        <VStack alignItems="left">
+                            <Heading as="h4">Contact</Heading>
+                            <ul>
+                                <li><a>Address</a></li>
+                                <li><a>Phone Number</a></li>
+                                <li><a>Email</a></li>
+                            </ul>
+                        </VStack>
+                        <VStack alignItems="left">
+                            <Heading as="h4">Social Media Links</Heading>
+                            <ul>
+                                <li><a>Instagram</a></li>
+                            </ul>
+                        </VStack>
+                    </Box>
                 </HStack>
             </Box>
         </footer>

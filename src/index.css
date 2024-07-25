@@ -102,9 +102,9 @@ a:hover {
 
   .specials-card-img {
     border-radius: 1rem;
-    margin: 1.85rem;
     align-self: center;
     grid-column-start: 2;
+    height: 6rem;
   }
 
   .specials-card-text {
@@ -112,10 +112,10 @@ a:hover {
   }
 
   .specials-card-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 1fr;
     background: white;
-    border-color: black;
-    border-width: 1px 0;
+    border-color: #e0e3e1;
+    border-width: 0 0 1px;
     border-style: solid;
   }
 }
