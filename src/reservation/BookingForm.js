@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Box,
     FormControl,
@@ -22,16 +22,45 @@ import {
     selectStyles
 } from "./BookingFormStyling";
 //date picker
+import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import StyledPickerContainer from "./StyledPickerContainer";
 
 const BookingForm = () => {
-//     const [selectedSeating, setSelectedSeating]
-// const handleChange
+//initial values
+    const [selectedSeating, setSelectedSeating] = useState("");
+    const [selectedDate, setSelectedDate] = useState(dayjs("2022-04-17"));
+    const [selectedOccasion, setSelectedOccasion] = useState("");
+    const [selectedTime, setSelectedTime] = useState("");
+    const [selectedDiners, setSelectedDiners] = useState("");
+    
+    // const clearForm = () => {
+    //     setSelectedSeating("");
+    //     setSelectedDate("");
+    //     setSelectedOccasion("");
+    //     setSelectedTime("");
+    //     setSelectedDiners("");
+    // };
+    const handleDateChange = (newValue) => {
+        // const newDate = {
+        // value: newValue,
+        // //   label: newValue ? newValue.toLocaleDateString() : '',
+        // };
+        setSelectedDate(newValue);
+        console.log(selectedDate);
+    };
+    console.log(selectedDate);
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log(selectedSeating);
+    //     // clearForm();
+    //   };
 
     return(
-        <form>
+        <form
+            // onSubmit={handleSubmit}
+        >
                         <Box className="form-container">
                             {/* <VStack alignItems="left" flex={1}> */}
                                 <FormControl>
@@ -39,6 +68,8 @@ const BookingForm = () => {
                                     <Select
                                         id="seating"
                                         name="seating"
+                                        value={selectedSeating}
+                                        onChange={values => setSelectedSeating(values)}
                                         options={seatingOptions}
                                         components={{Placeholder : SeatingPlaceholder, DropdownIndicator}}
                                         styles={selectStyles}
@@ -48,7 +79,10 @@ const BookingForm = () => {
                                 <FormControl>
                                     <FormLabel htmlFor="date">Date</FormLabel>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <StyledPickerContainer />
+                                        <StyledPickerContainer
+                                            value={selectedDate}
+                                            onChange={handleDateChange}
+                                        />
                                     </LocalizationProvider>
                                     <FormErrorMessage></FormErrorMessage>
                                 </FormControl>
@@ -57,6 +91,8 @@ const BookingForm = () => {
                                     <Select
                                         id="occasion"
                                         name="occasion"
+                                        value={selectedOccasion}
+                                        onChange={values => setSelectedOccasion(values)}
                                         options={occasionOptions}
                                         components={{Placeholder : OccasionPlaceholder, DropdownIndicator}}
                                         styles={selectStyles}
@@ -69,6 +105,8 @@ const BookingForm = () => {
                                     <Select
                                         id="time"
                                         name="time"
+                                        value={selectedTime}
+                                        onChange={values => setSelectedTime(values)}
                                         options={allowedTime}
                                         components={{Placeholder : TimePlaceholder, DropdownIndicator}}
                                         styles={selectStyles}
@@ -81,6 +119,8 @@ const BookingForm = () => {
                                     <Select
                                         id="diners"
                                         name="diners"
+                                        value={selectedDiners}
+                                        onChange={values => setSelectedDiners(values)}
                                         options={dinerOptions}
                                         components={{Placeholder : DinerPlaceholder,
                                             DropdownIndicator,
@@ -98,6 +138,8 @@ const BookingForm = () => {
                             <Button
                                 className="primary-button"
                                 maxWidth="12rem"
+                                // type="submit"
+                                // prob!!!!!
                             ><Link to="/booking/confirmation">Reserve a Table</Link>
                                 </Button>
                         </HStack>
