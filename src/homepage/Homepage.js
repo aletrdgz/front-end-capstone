@@ -1,14 +1,16 @@
 import React from "react";
-import Header from "../common/Header";
-import Main from "./Main";
-import Footer from "./Footer";
+import CallToAction from "./CallToAction";
+import Specials from "./Specials";
+import CustomersSay from "./CustomersSay";
+import About from "./About";
 
 const Homepage = () => {
     return(
         <>
-            <Header />
-            <Main />
-            <Footer />
+            <CallToAction />
+            <Specials />
+            <CustomersSay />
+            <About />
         </>
     );
 };

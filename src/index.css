@@ -119,7 +119,6 @@ a:hover {
   .nav-links.visible {
     display: flex;
     flex-direction: column;
-    /* justify-content: left; */
     position: absolute;
     top: 7.4rem;
     right: 0;

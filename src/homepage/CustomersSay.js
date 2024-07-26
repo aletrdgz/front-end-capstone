@@ -35,23 +35,25 @@ const customersOpinion = [
 
 const CustomersSay = () => {
     return(
-<Box bg="#FBDABB" px="20vw" pt="8rem" pb="11rem">
-    <VStack spacing="4rem">
-        <Heading>What our customers say!</Heading>
-        <HStack spacing="1.5rem" alignItems="start">
-            {customersOpinion.map((customerOpinion) => (
-                            <CustomersCard
-                                key={customerOpinion.username}
-                                stars={customerOpinion.stars}
-                                name={customerOpinion.name}
-                                username={customerOpinion.username}
-                                opinion={customerOpinion.opinion}
-                                imageSrc={customerOpinion.getImageSrc()}
-                            />
-                        ))}
-        </HStack>
-    </VStack>
-</Box>
+        <section>
+            <Box bg="#FBDABB" px="20vw" pt="8rem" pb="11rem">
+                <VStack spacing="4rem">
+                    <Heading>What our customers say!</Heading>
+                    <HStack spacing="1.5rem" alignItems="start">
+                        {customersOpinion.map((customerOpinion) => (
+                                        <CustomersCard
+                                            key={customerOpinion.username}
+                                            stars={customerOpinion.stars}
+                                            name={customerOpinion.name}
+                                            username={customerOpinion.username}
+                                            opinion={customerOpinion.opinion}
+                                            imageSrc={customerOpinion.getImageSrc()}
+                                        />
+                                    ))}
+                    </HStack>
+                </VStack>
+            </Box>
+        </section>
     );
 };
 export default CustomersSay;

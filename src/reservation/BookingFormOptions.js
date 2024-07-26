@@ -8,8 +8,6 @@ export const occasionOptions = [
     { value: "anniversary", label: "Anniversary" },
     { value: "other", label: "Other" }
 ];
-//fetch
-export const allowedTime = [];
 export const dinerOptions = [
     { value: "diners1", label: "1 Diner" },
     { value: "diners2", label: "2 Diners" },

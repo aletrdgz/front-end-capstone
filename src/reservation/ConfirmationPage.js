@@ -13,13 +13,27 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import Header from "../common/Header";
 import "./BookingPage.css";
 import pasta from "../img/d4ac7f08664b3ab85e379c0cfcfb44c74aa0a76e.jpg";
 import fish from "../img/96de1a8e84d5b60e17f4e8a752e3825e17a622bf.jpg";
 import ownersA from "../img/Mario and Adrian A.jpg";
+import BookingConfirmation from "./BookingConfirmation";
+import selectedSeating from "./BookingForm";
+import seatingIcon from "../img/seatingIcon.svg";
+import occasionIcon from "../img/occasionIcon.svg";
+import timeIcon from "../img/timeIcon.svg";
+import dinerIcon from "../img/dinerIcon.svg";
 
-const ConfirmationPage = () => {
+const bookingDetails = [
+    {
+        iconSrc: seatingIcon,
+        alt: "Seating icon",
+        placeholder: "Seating",
+        selection: selectedSeating.label,
+    },
+];
+
+const ConfirmationPage = (props) => {
     const formik = useFormik({
         initialValues: {
           firstName: "",
@@ -37,15 +51,22 @@ const ConfirmationPage = () => {
         }),
       });
 
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        props.SubmitForm(e);
+      }
+
     return(
         <>
-            <Header />
+            <section>
             <Box
                 bg="#495E57"
                 className="section-container"
             >
                 <VStack alignItems="left">
-                    <form>
+                    <form
+                        onSubmit={handleSubmit}
+                    >
                         <HStack alignItems="start" spacing="2.5rem">
                             <VStack alignItems="left" flex={1}>
                                 <FormControl isInvalid={formik.errors.firstName && formik.touched.firstName}>
@@ -69,6 +90,20 @@ const ConfirmationPage = () => {
                                     />
                                     <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
                                 </FormControl>
+                                <Box
+                                    className="booking-details-container"
+                                >
+                                    {bookingDetails.map((bookingDetail) => (
+                                        <BookingConfirmation
+                                            key={bookingDetail.placeholder}
+                                            iconSrc={bookingDetail.iconSrc}
+                                            alt={bookingDetail.alt}
+                                            placeholder={bookingDetail.placeholder}
+                                            selection={bookingDetail.selection}
+                                            // flexGrow="1"
+                                        />
+                                    ))}
+                                </Box>
                             </VStack>
                             <VStack alignItems="left" flex={1}>
                                 <FormControl isInvalid={formik.errors.lastName && formik.touched.lastName}>
@@ -117,27 +152,30 @@ const ConfirmationPage = () => {
                     >Confirm reservation</Button>
                 </HStack>
             </Box>
-            <Box
-                className="section-container"
-            >
-                <Box className="gallery-container">
-                    <Image
-                    className="gallery-img"
-                    src={pasta}
-                    alt="Restaurant pasta dish"
-                    />
-                    <Image
-                    className="gallery-img"
-                    src={fish}
-                    alt="Restaurant fish dish"
-                    />
-                    <Image
-                    className="gallery-img"
-                    src={ownersA}
-                    alt="Mario and Adrian"
-                    />
+            </section>
+            <section>
+                <Box
+                    className="section-container"
+                >
+                    <Box className="gallery-container">
+                        <Image
+                        className="gallery-img"
+                        src={pasta}
+                        alt="Restaurant pasta dish"
+                        />
+                        <Image
+                        className="gallery-img"
+                        src={fish}
+                        alt="Restaurant fish dish"
+                        />
+                        <Image
+                        className="gallery-img"
+                        src={ownersA}
+                        alt="Mario and Adrian"
+                        />
+                    </Box>
                 </Box>
-            </Box>
+            </section>
         </>
     );
 };

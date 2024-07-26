@@ -1,17 +1,14 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import Homepage from './homepage/Homepage';
-import BookingPage from './reservation/BookingPage';
-import ConfirmationPage from './reservation/ConfirmationPage';
+import Header from "./common/Header";
+import Main from "./common/Main";
+import Footer from "./common/Footer";
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/booking" element={<BookingPage />} />
-        <Route path="/booking/confirmation" element={<ConfirmationPage />} />
-      </Routes>
+      <Header />
+      <Main />
+      <Footer />
     </>
   );
 }
