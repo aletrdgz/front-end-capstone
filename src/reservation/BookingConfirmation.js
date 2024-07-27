@@ -2,39 +2,26 @@ import React from "react";
 import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import alert from "../img/alert.svg";
 
-const BookingConfirmation = ({ iconSrc, alt, placeholder, selection }) => {
+const BookingConfirmation = ({ iconSrc, alt, selection }) => {
     return (
           <Box
             
             // onClick={}
           >
-            <HStack>
+            <HStack spacing="1rem">
                 <Image
-                    //   className="specials-card-img"
+                    className="confirm-img"
                     src={iconSrc}
                     alt={alt}
-                    fill="#EE9972"
                     background="white"
                 />
-                <VStack 
-                    // justifyContent="space-between"
+                <Text
+                  my={0}
+                  color="#EDEFEE"
+                  fontWeight="700"
                 >
-                      <Image 
-                        src={alert}
-                        alt="Alert icon"
-                        // fill="#EE9972"
-                      />
-                      <Text
-                        my={0}
-                        color="#EE9972"
-                        fontWeight="700"
-                        background="white"
-                      >{
-                        // placeholder
-                        selection
-                    //    ? selection : placeholder
-                       }</Text>
-                    </VStack>
+                  {selection}
+                </Text>
             </HStack>
           </Box>
       );

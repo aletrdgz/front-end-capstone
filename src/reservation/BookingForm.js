@@ -22,36 +22,27 @@ import {
     selectStyles
 } from "./BookingFormStyling";
 //date picker
-import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import StyledPickerContainer from "./StyledPickerContainer";
-//booking
-import seatingIcon from "../img/seatingIcon.svg";
-import occasionIcon from "../img/occasionIcon.svg";
-import timeIcon from "../img/timeIcon.svg";
-import dinerIcon from "../img/dinerIcon.svg";
-
+import { format } from 'date-fns';
 
 
 const BookingForm = (props) => {
-    
 //initial values
     const [selectedSeating, setSelectedSeating] = useState("");
-    const [selectedDate, setSelectedDate] = useState(
-        // new Date()
-        // dayjs("2024-07-25")
-        ""
-    );
+    const [selectedDate, setSelectedDate] = useState("");
     const [selectedOccasion, setSelectedOccasion] = useState("");
     const [selectedTime, setSelectedTime] = useState("");
     const [selectedDiners, setSelectedDiners] = useState("");
+
+    const [formattedDate, setFormattedDate] = useState("");
+    const [reservationSubmit, setReservationSubmit] = useState({});
 
     let allowedTime = props.availableTimes.availableTimes.map(availableTimes => {return {
         value: availableTimes,
         label: availableTimes + " pm"
      }});
-    console.log(allowedTime);
 
     // const clearForm = () => {
     //     setSelectedSeating("");
@@ -61,52 +52,32 @@ const BookingForm = (props) => {
     //     setSelectedDiners("");
     // };
     const handleDateChange = (values) => {
-        // const newDate = {
-        // value: newValue,
-        // //   label: newValue ? newValue.toLocaleDateString() : '',
-        // };
         setSelectedDate(values);
-        props.dispatch(values);
+        setFormattedDate(format(new Date(values), "MMMM dd, yyyy"));
+        props.timeDispatch(values);
     };
-    // console.log(selectedTime.label);
-    console.log("selected date:",selectedDate);
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //      props.SubmitForm(e);
-    //     console.log(selectedSeating);
-    //     // clearForm();
-    //   };
 
-    let bookingDetails = [
-        {
-            iconSrc: seatingIcon,
-            alt: "Seating icon",
-            placeholder: "Select",
-            selection: selectedSeating.label,
-        },
-        {
-            iconSrc: occasionIcon,
-            alt: "Occasion icon",
-            placeholder: "Select",
-            selection: selectedOccasion.label,
-        },
-        {
-            iconSrc: timeIcon,
-            alt: "Time icon",
-            placeholder: "Select",
-            selection: selectedTime.label,
-        },
-        {
-            iconSrc: dinerIcon,
-            alt: "Diner icon",
-            placeholder: "Select",
-            selection: selectedDiners.label,
-        }
-    ];
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    //      props.SubmitForm(e);
+        setReservationSubmit({
+            "seating" : selectedSeating.label,
+            "occasion" : selectedOccasion.label,
+            "date" : formattedDate,
+            "time" : selectedTime.label,
+            "diners" : selectedDiners.label,
+        }) ;
+        props.reservationDispatch(reservationSubmit);
+        console.log("form:",props.reservation);
+    //     // clearForm();
+      };
+
+    
 
     return(
         <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
+            // reservation={reservation}
         >
             <Box className="form-container">
                 {/* <VStack alignItems="left" flex={1}> */}
@@ -186,9 +157,11 @@ const BookingForm = (props) => {
                 <Button
                     className="primary-button"
                     maxWidth="12rem"
-                    // type="submit"
-                    // prob!!!!!
-                ><Link to="/booking/confirmation">Reserve a Table</Link>
+                    type="submit"
+                >
+                    <Link 
+                        to="/booking/confirmation"
+                    >Reserve a Table</Link>
                     </Button>
             </HStack>
         </form>

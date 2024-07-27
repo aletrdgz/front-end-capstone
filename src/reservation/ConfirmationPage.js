@@ -19,8 +19,43 @@ import fish from "../img/96de1a8e84d5b60e17f4e8a752e3825e17a622bf.jpg";
 import ownersA from "../img/Mario and Adrian A.jpg";
 import BookingConfirmation from "./BookingConfirmation";
 import bookingDetails from "./BookingForm";
+//booking
+import seatingIcon from "../img/seatingIcon.svg";
+import occasionIcon from "../img/occasionIcon.svg";
+import timeIcon from "../img/timeIcon.svg";
+import dinerIcon from "../img/dinerIcon.svg";
+import dateIcon from "../img/dateIcon.svg";
 
 const ConfirmationPage = (props) => {
+
+    let bookingDetails = [
+        {
+            iconSrc: seatingIcon,
+            alt: "Seating icon",
+            selection: props.reservation.reservation.seating,
+        },
+        {
+            iconSrc: occasionIcon,
+            alt: "Occasion icon",
+            selection: props.reservation.reservation.occasion,
+        },
+        {
+            iconSrc: timeIcon,
+            alt: "Time icon",
+            selection: props.reservation.reservation.time,
+        },
+        {
+            iconSrc: dinerIcon,
+            alt: "Diner icon",
+            selection: props.reservation.reservation.diners,
+        },
+        {
+            iconSrc: dateIcon,
+            alt: "Date icon",
+            selection: props.reservation.reservation.date,
+        }
+    ];
+
     const formik = useFormik({
         initialValues: {
           firstName: "",
@@ -43,8 +78,8 @@ const ConfirmationPage = (props) => {
         props.SubmitForm(e);
       }
 
-      console.log("confirm:",props.bookingDetails);
-
+      console.log("confirm:",bookingDetails);
+      console.log("reservation:",props.reservation.reservation);
     return(
         <>
             <section>
@@ -82,16 +117,15 @@ const ConfirmationPage = (props) => {
                                 <Box
                                     className="booking-details-container"
                                 >
-                                    {/* {props.bookingDetails.bookingDetails.map((bookingDetail) => (
+                                    {bookingDetails.map((bookingDetail) => (
                                         <BookingConfirmation
-                                            key={bookingDetail.placeholder}
+                                            key={bookingDetail.selection}
                                             iconSrc={bookingDetail.iconSrc}
                                             alt={bookingDetail.alt}
-                                            placeholder={bookingDetail.placeholder}
                                             selection={bookingDetail.selection}
                                             // flexGrow="1"
                                         />
-                                    ))} */}
+                                    ))}
                                 </Box>
                             </VStack>
                             <VStack alignItems="left" flex={1}>

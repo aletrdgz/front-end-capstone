@@ -19,7 +19,7 @@ const Main = () => {
         return result;
     };
 
-    function updateTimes(state, selectedDate) {
+    function updateTimes(timeState, selectedDate) {
         return {availableTimes: fetchTimeAPI(
             new Date()
         )}
@@ -27,22 +27,50 @@ const Main = () => {
     const initializeTimes = {availableTimes: fetchTimeAPI(
         new Date()
     )};
-    const [state, dispatch] = useReducer(
+    const [timeState, timeDispatch] = useReducer(
         updateTimes,
         initializeTimes
       );
 
+      const setReservation = function(reservationSubmit) {
+        let result = reservationSubmit
+        // {
+        //     // "seating" : selectedSeating.label,
+        //     // "occasion" : selectedOccasion.label,
+        //     // "date" : formattedDate,
+        //     // "time" : selectedTime.label,
+        //     // "diners" : selectedDiners.label,
+        //     };
+        return result;
+    };
 
+      function updateReservation(reservationState, reservationSubmit) {
+            return {reservation: setReservation(
+                reservationSubmit
+                // {}
+            )}
+        };
+        const initializeReservation = {reservation: setReservation(
+            // {}
+        )};
+        const [reservationState, reservationDispatch] = useReducer(
+            updateReservation,
+            initializeReservation
+          );
 
     return (
         <main>
             <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/booking" element={<BookingPage
-                    availableTimes={state}
-                    dispatch={dispatch}
+                    availableTimes={timeState}
+                    timeDispatch={timeDispatch}
+                    reservation={reservationState}
+                    reservationDispatch={reservationDispatch}
                 />} />
                 <Route path="/booking/confirmation" element={<ConfirmationPage
+                    reservation={reservationState}
+                    reservationDispatch={reservationDispatch}
                     // submitForm={submitForm}
                 />} />
             </Routes>

@@ -27,7 +27,9 @@ const BookingPage = (props) => {
                     >Reservations</Heading>
                         <BookingForm
                             availableTimes={props.availableTimes}
-                            dispatch={props.dispatch}
+                            timeDispatch={props.timeDispatch}
+                            reservation={props.reservation}
+                            reservationDispatch={props.reservationDispatch}
                         />
                     </VStack>
                 </Box>
