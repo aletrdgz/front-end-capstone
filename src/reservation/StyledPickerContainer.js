@@ -100,7 +100,7 @@ const DropdownIcon = () => (
     <img src={dropdown} alt={"Dropdown indicator"} className="datepicker-icon" />
 );
 
-export default function StyledPickerContainer() {
+export default function StyledPickerContainer(props) {
     return (
         <ThemeProvider theme={newTheme}>
             <DesktopDatePicker
@@ -118,6 +118,8 @@ export default function StyledPickerContainer() {
                 }}
                 format="LL"
                 renderInput={(params) => <TextField {...params} />}
+                value={props.selectedDate}
+                onChange={(values) => props.handleDateChange(values)}
             />
         </ThemeProvider>
     );

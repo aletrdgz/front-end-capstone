@@ -27,14 +27,20 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import StyledPickerContainer from "./StyledPickerContainer";
 //booking
+import seatingIcon from "../img/seatingIcon.svg";
+import occasionIcon from "../img/occasionIcon.svg";
+import timeIcon from "../img/timeIcon.svg";
+import dinerIcon from "../img/dinerIcon.svg";
+
 
 
 const BookingForm = (props) => {
+    
 //initial values
     const [selectedSeating, setSelectedSeating] = useState("");
     const [selectedDate, setSelectedDate] = useState(
         // new Date()
-        // dayjs("")
+        // dayjs("2024-07-25")
         ""
     );
     const [selectedOccasion, setSelectedOccasion] = useState("");
@@ -54,22 +60,49 @@ const BookingForm = (props) => {
     //     setSelectedTime("");
     //     setSelectedDiners("");
     // };
-    const handleDateChange = (e) => {
+    const handleDateChange = (values) => {
         // const newDate = {
         // value: newValue,
         // //   label: newValue ? newValue.toLocaleDateString() : '',
         // };
-        setSelectedDate(e);
-        console.log(selectedDate);
-        props.dispatch(e);
+        setSelectedDate(values);
+        props.dispatch(values);
     };
-    console.log(selectedSeating.label);
+    // console.log(selectedTime.label);
+    console.log("selected date:",selectedDate);
     // const handleSubmit = (e) => {
     //     e.preventDefault();
     //      props.SubmitForm(e);
     //     console.log(selectedSeating);
     //     // clearForm();
     //   };
+
+    let bookingDetails = [
+        {
+            iconSrc: seatingIcon,
+            alt: "Seating icon",
+            placeholder: "Select",
+            selection: selectedSeating.label,
+        },
+        {
+            iconSrc: occasionIcon,
+            alt: "Occasion icon",
+            placeholder: "Select",
+            selection: selectedOccasion.label,
+        },
+        {
+            iconSrc: timeIcon,
+            alt: "Time icon",
+            placeholder: "Select",
+            selection: selectedTime.label,
+        },
+        {
+            iconSrc: dinerIcon,
+            alt: "Diner icon",
+            placeholder: "Select",
+            selection: selectedDiners.label,
+        }
+    ];
 
     return(
         <form
@@ -95,7 +128,7 @@ const BookingForm = (props) => {
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <StyledPickerContainer
                                 value={selectedDate}
-                                onChange={(e) => handleDateChange(e.target.value)}
+                                handleDateChange={handleDateChange}
                                 // type="date"
                             />
                         </LocalizationProvider>

@@ -18,20 +18,7 @@ import pasta from "../img/d4ac7f08664b3ab85e379c0cfcfb44c74aa0a76e.jpg";
 import fish from "../img/96de1a8e84d5b60e17f4e8a752e3825e17a622bf.jpg";
 import ownersA from "../img/Mario and Adrian A.jpg";
 import BookingConfirmation from "./BookingConfirmation";
-import selectedSeating from "./BookingForm";
-import seatingIcon from "../img/seatingIcon.svg";
-import occasionIcon from "../img/occasionIcon.svg";
-import timeIcon from "../img/timeIcon.svg";
-import dinerIcon from "../img/dinerIcon.svg";
-
-const bookingDetails = [
-    {
-        iconSrc: seatingIcon,
-        alt: "Seating icon",
-        placeholder: "Seating",
-        selection: selectedSeating.label,
-    },
-];
+import bookingDetails from "./BookingForm";
 
 const ConfirmationPage = (props) => {
     const formik = useFormik({
@@ -55,6 +42,8 @@ const ConfirmationPage = (props) => {
         e.preventDefault();
         props.SubmitForm(e);
       }
+
+      console.log("confirm:",props.bookingDetails);
 
     return(
         <>
@@ -93,7 +82,7 @@ const ConfirmationPage = (props) => {
                                 <Box
                                     className="booking-details-container"
                                 >
-                                    {bookingDetails.map((bookingDetail) => (
+                                    {/* {props.bookingDetails.bookingDetails.map((bookingDetail) => (
                                         <BookingConfirmation
                                             key={bookingDetail.placeholder}
                                             iconSrc={bookingDetail.iconSrc}
@@ -102,7 +91,7 @@ const ConfirmationPage = (props) => {
                                             selection={bookingDetail.selection}
                                             // flexGrow="1"
                                         />
-                                    ))}
+                                    ))} */}
                                 </Box>
                             </VStack>
                             <VStack alignItems="left" flex={1}>
