@@ -25,7 +25,7 @@ import { ReactComponent as TimeIcon } from "../img/timeIcon.svg";
 import { ReactComponent as DinerIcon } from "../img/dinerIcon.svg";
 import { ReactComponent as DateIcon } from "../img/dateIcon.svg";
 
-const ConfirmationPage = (props) => {
+const UserDetailsForm = (props) => {
 
     let bookingDetails = [
         {
@@ -67,13 +67,13 @@ const ConfirmationPage = (props) => {
         }),
       });
 
-      const handleSubmit = (e) => {
+      const handleFormSubmit = (e) => {
+        // alert(JSON.stringify(e, null, 2));
+        console.log("submit:",e);
         e.preventDefault();
-        props.SubmitForm(e);
-      }
+        props.submitForm(e);
+      };
 
-      console.log("confirm:",bookingDetails);
-      console.log("reservation:",props.reservation.reservation);
     return(
         <>
             <section>
@@ -83,7 +83,7 @@ const ConfirmationPage = (props) => {
             >
                 <VStack alignItems="left">
                     <form
-                        onSubmit={handleSubmit}
+                        onSubmit={handleFormSubmit}
                     >
                         <HStack alignItems="start" spacing="2.5rem">
                             <VStack alignItems="left" flex={1}>
@@ -156,17 +156,17 @@ const ConfirmationPage = (props) => {
                                 </FormControl>
                             </VStack>
                         </HStack>
+                        <HStack
+                            justifyContent="center"
+                            pt="3rem"
+                        >
+                            <Button
+                                className="primary-button"
+                                type="submit"
+                            >Confirm reservation</Button>
+                        </HStack>
                     </form>
                 </VStack>
-                <HStack
-                    justifyContent="center"
-                    pt="3rem"
-                >
-                    <Button
-                        className="primary-button"
-                        type="submit"
-                    >Confirm reservation</Button>
-                </HStack>
             </Box>
             </section>
             <section>
@@ -195,6 +195,6 @@ const ConfirmationPage = (props) => {
         </>
     );
 };
-export default ConfirmationPage;
+export default UserDetailsForm;
 
 

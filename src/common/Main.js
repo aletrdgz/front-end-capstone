@@ -1,8 +1,9 @@
 import React, { useReducer } from "react";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Homepage from '../homepage/Homepage';
 import BookingPage from '../reservation/BookingPage';
-import ConfirmationPage from '../reservation/ConfirmationPage';
+import UserDetailsForm from '../reservation/UserDetailsForm';
+import ConfirmedBooking from "../reservation/ConfirmedBooking";
 
 const Main = () => {
 
@@ -19,6 +20,23 @@ const Main = () => {
         return result;
     };
 
+    const submitAPI = function(e) {
+        return true;
+    };
+
+    const navigate = useNavigate();
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      };
+    // or alert
+    async function submitForm (e){
+        await sleep(1000);
+        if(submitAPI(e)){
+            navigate("/confirmed")
+        };
+    };
+
     function updateTimes(timeState, selectedDate) {
         return {availableTimes: fetchTimeAPI(
             new Date()
@@ -32,7 +50,7 @@ const Main = () => {
         initializeTimes
       );
 
-      const setReservation = function(reservationSubmit) {
+    const setReservation = function(reservationSubmit) {
         let result = reservationSubmit
         // {
         //     // "seating" : selectedSeating.label,
@@ -44,19 +62,19 @@ const Main = () => {
         return result;
     };
 
-      function updateReservation(reservationState, reservationSubmit) {
+    function updateReservation(reservationState, reservationSubmit) {
             return {reservation: setReservation(
                 reservationSubmit
                 // {}
             )}
-        };
-        const initializeReservation = {reservation: setReservation(
+    };
+    const initializeReservation = {reservation: setReservation(
             // {}
-        )};
-        const [reservationState, reservationDispatch] = useReducer(
-            updateReservation,
-            initializeReservation
-          );
+    )};
+    const [reservationState, reservationDispatch] = useReducer(
+        updateReservation,
+        initializeReservation
+        );
 
     return (
         <main>
@@ -68,11 +86,12 @@ const Main = () => {
                     reservation={reservationState}
                     reservationDispatch={reservationDispatch}
                 />} />
-                <Route path="/booking/confirmation" element={<ConfirmationPage
+                <Route path="/booking/user-details" element={<UserDetailsForm
                     reservation={reservationState}
                     reservationDispatch={reservationDispatch}
-                    // submitForm={submitForm}
+                    submitForm={submitForm}
                 />} />
+                <Route path="/confirmed" element={<ConfirmedBooking />} />
             </Routes>
         </main>
     );

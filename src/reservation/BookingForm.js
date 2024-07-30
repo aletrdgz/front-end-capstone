@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import {
     Box,
     FormControl,
@@ -57,7 +58,12 @@ const BookingForm = (props) => {
         props.timeDispatch(values);
     };
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      };
+
+    async function handleSubmit(e) {
         e.preventDefault();
     //      props.SubmitForm(e);
         setReservationSubmit({
@@ -68,11 +74,12 @@ const BookingForm = (props) => {
             "diners" : selectedDiners.label,
         }) ;
         props.reservationDispatch(reservationSubmit);
-        console.log("form:",props.reservation);
-    //     // clearForm();
+        await sleep(1000);
+        if(Object.keys(props.reservation).length > 0){
+            navigate("/booking/user-details")
+        }
+        // clearForm();
       };
-
-    
 
     return(
         <form
@@ -80,7 +87,6 @@ const BookingForm = (props) => {
             // reservation={reservation}
         >
             <Box className="form-container">
-                {/* <VStack alignItems="left" flex={1}> */}
                     <FormControl>
                         <FormLabel htmlFor="seating">Seating preferences</FormLabel>
                         <Select
@@ -151,7 +157,6 @@ const BookingForm = (props) => {
                         </Select>
                         <FormErrorMessage></FormErrorMessage>
                     </FormControl>
-                {/* </VStack> */}
             </Box>
             <HStack justifyContent="center" pt="3rem">
                 <Button
@@ -159,9 +164,7 @@ const BookingForm = (props) => {
                     maxWidth="12rem"
                     type="submit"
                 >
-                    <Link 
-                        to="/booking/confirmation"
-                    >Reserve a Table</Link>
+                    Reserve a Table
                     </Button>
             </HStack>
         </form>
