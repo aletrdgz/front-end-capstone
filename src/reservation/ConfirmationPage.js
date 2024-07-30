@@ -18,40 +18,34 @@ import pasta from "../img/d4ac7f08664b3ab85e379c0cfcfb44c74aa0a76e.jpg";
 import fish from "../img/96de1a8e84d5b60e17f4e8a752e3825e17a622bf.jpg";
 import ownersA from "../img/Mario and Adrian A.jpg";
 import BookingConfirmation from "./BookingConfirmation";
-import bookingDetails from "./BookingForm";
 //booking
-import seatingIcon from "../img/seatingIcon.svg";
-import occasionIcon from "../img/occasionIcon.svg";
-import timeIcon from "../img/timeIcon.svg";
-import dinerIcon from "../img/dinerIcon.svg";
-import dateIcon from "../img/dateIcon.svg";
+import { ReactComponent as SeatingIcon } from "../img/seatingIcon.svg";
+import { ReactComponent as OccasionIcon } from "../img/occasionIcon.svg";
+import { ReactComponent as TimeIcon } from "../img/timeIcon.svg";
+import { ReactComponent as DinerIcon } from "../img/dinerIcon.svg";
+import { ReactComponent as DateIcon } from "../img/dateIcon.svg";
 
 const ConfirmationPage = (props) => {
 
     let bookingDetails = [
         {
-            iconSrc: seatingIcon,
-            alt: "Seating icon",
+            iconComponent: <SeatingIcon className="confirmation-icon" alt="Seating icon"/>,
             selection: props.reservation.reservation.seating,
         },
         {
-            iconSrc: occasionIcon,
-            alt: "Occasion icon",
+            iconComponent: <OccasionIcon className="confirmation-icon" alt="Occasion icon"/>,
             selection: props.reservation.reservation.occasion,
         },
         {
-            iconSrc: timeIcon,
-            alt: "Time icon",
+            iconComponent: <TimeIcon className="confirmation-icon" alt="Time icon"/>,
             selection: props.reservation.reservation.time,
         },
         {
-            iconSrc: dinerIcon,
-            alt: "Diner icon",
+            iconComponent: <DinerIcon className="confirmation-icon" alt="Diner icon"/>,
             selection: props.reservation.reservation.diners,
         },
         {
-            iconSrc: dateIcon,
-            alt: "Date icon",
+            iconComponent: <DateIcon className="confirmation-icon" alt="Date icon"/>,
             selection: props.reservation.reservation.date,
         }
     ];
@@ -120,8 +114,7 @@ const ConfirmationPage = (props) => {
                                     {bookingDetails.map((bookingDetail) => (
                                         <BookingConfirmation
                                             key={bookingDetail.selection}
-                                            iconSrc={bookingDetail.iconSrc}
-                                            alt={bookingDetail.alt}
+                                            iconComponent={bookingDetail.iconComponent}
                                             selection={bookingDetail.selection}
                                             // flexGrow="1"
                                         />
@@ -171,7 +164,7 @@ const ConfirmationPage = (props) => {
                 >
                     <Button
                         className="primary-button"
-                        maxWidth="12rem"
+                        type="submit"
                     >Confirm reservation</Button>
                 </HStack>
             </Box>

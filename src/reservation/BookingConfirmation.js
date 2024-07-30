@@ -1,20 +1,15 @@
 import React from "react";
-import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
-import alert from "../img/alert.svg";
+import { Box, HStack, Text,
+  //  VStack
+  } from "@chakra-ui/react";
 
-const BookingConfirmation = ({ iconSrc, alt, selection }) => {
+const BookingConfirmation = ({ iconComponent, selection }) => {
     return (
           <Box
-            
             // onClick={}
           >
             <HStack spacing="1rem">
-                <Image
-                    className="confirm-img"
-                    src={iconSrc}
-                    alt={alt}
-                    background="white"
-                />
+                {iconComponent}
                 <Text
                   my={0}
                   color="#EDEFEE"

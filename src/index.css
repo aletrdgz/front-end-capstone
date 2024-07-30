@@ -81,6 +81,7 @@ a:hover {
   font-family: "Karla", sans-serif;
   font-size: 1.125rem;
   font-weight: 500;
+  max-width: 12rem;
 }
 
 .specials-cards-container {
@@ -105,6 +106,10 @@ a:hover {
 .specials-card-text {
   color: black;
   padding: 1.5rem;
+}
+
+.confirmation-icon path{
+  fill: #edefee;
 }
 
 @media (max-width: 768px) {
