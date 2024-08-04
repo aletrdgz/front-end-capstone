@@ -9,7 +9,6 @@ import {
     Button,
 } from "@chakra-ui/react";
 import "./BookingPage.css";
-import { Link } from "react-router-dom";
 import { seatingOptions, occasionOptions, dinerOptions } from "./BookingFormOptions";
 //select styling
 import Select from 'react-select';
